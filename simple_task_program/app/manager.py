@@ -1,4 +1,5 @@
 from pathlib import Path
+from datetime import datetime
 from app.utils import safe_filename
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -8,7 +9,10 @@ NOTES_DIR.mkdir(parents=True, exist_ok=True)
 def add_note(title: str, content: str) -> None:
     filename = safe_filename(title) + ".txt"
     path = NOTES_DIR / filename
-    path.write_text(content, encoding="utf-8")
+
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    wrapped = f"[Created: {timestamp}]\n\n{content}"
+    path.write_text(wrapped, encoding="utf-8")
 
 def list_notes() -> list[str]:
     files = sorted(NOTES_DIR.glob("*.txt"))
@@ -21,12 +25,10 @@ def read_note(title: str) -> str | None:
         return None
     return path.read_text(encoding="utf-8")
 
-# --- NEW FUNCTION ---
 def delete_note(title: str) -> bool:
-    """Deletes a note by title. Returns True if deleted, False if not found."""
     filename = safe_filename(title) + ".txt"
     path = NOTES_DIR / filename
     if path.exists():
-        path.unlink()  # delete the file
+        path.unlink()
         return True
     return False

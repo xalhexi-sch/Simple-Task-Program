@@ -1,12 +1,12 @@
-from app.manager import add_note, list_notes, read_note, delete_note  # <- added delete_note
+from app.manager import add_note, list_notes, read_note, delete_note  # delete_note included
 
 def menu():
     print("\n=== Simple Notes Organizer ===")
     print("1) Add note")
     print("2) List notes")
     print("3) Read note")
-    print("4) Delete note")   # <- new menu option
-    print("5) Exit")          # <- shifted exit to 5
+    print("4) Delete note")
+    print("5) Exit")
 
 def main():
     while True:
@@ -37,14 +37,14 @@ def main():
                 print("\n--- Note ---")
                 print(text)
 
-        elif choice == "4":  # <- new delete note
+        elif choice == "4":
             title = input("Enter note title to delete: ").strip()
             if delete_note(title):
                 print("✅ Note deleted!")
             else:
                 print("❌ Note not found.")
 
-        elif choice == "5":   # <- exit updated
+        elif choice == "5":
             print("Bye!")
             break
 
