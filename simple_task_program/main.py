@@ -1,4 +1,4 @@
-from app.manager import add_note, list_notes, read_note, delete_note  # delete_note included
+from app.manager import add_note, list_notes, read_note, delete_note 
 
 def menu():
     print("\n=== Simple Notes Organizer ===")
