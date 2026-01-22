@@ -13,3 +13,4 @@ A simple Python script to manage text-based notes, with functionality to add, li
 
 - Python 3.6 or later
 
+Hello Sir
